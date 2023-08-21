@@ -2,11 +2,13 @@
 
 source ./build-android-env.sh
 
-ARCHIVE=curl-7.88.0.tar.xz
-
 DIR=$PWD
+echo "build path is in $DIR"
+echo " "
 
-cd $DIR
+#cd $DIR
+echo "筱雅 curr path is ${PWD}"
+
 
 function build() {
     export TARGET_HOST=$1
@@ -18,6 +20,13 @@ function build() {
     export LD=$TOOLCHAIN/bin/ld
     export RANLIB=$TOOLCHAIN/bin/llvm-ranlib
     export STRIP=$TOOLCHAIN/bin/llvm-strip
+    echo "| ----------------------------------------------------↓"
+    echo "| TARGET_HOST  is : $TARGET_HOST"
+    echo "| ANDROID_ARCH is : $ANDROID_ARCH"
+    echo "| ----------------------------------------------------↑"
+
+    echo "curr path is ${PWD}"
+
 
     ./configure --host=$TARGET_HOST \
                 --target=$TARGET_HOST \
@@ -33,10 +42,9 @@ function build() {
 
 
 build aarch64-linux-android arm64-v8a
-build armv7a-linux-androideabi armeabi-v7a
-build i686-linux-android x86
-build x86_64-linux-android x86_64
+#build armv7a-linux-androideabi armeabi-v7a
+#build i686-linux-android x86
+#build x86_64-linux-android x86_64
 
-// cd ..
+# cd ..
 
-// rm -rf cd $DIR
